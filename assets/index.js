@@ -7,18 +7,6 @@ let newNoteBtn;
 let noteList;
 let clearBtn;
 
-// Check if the current page is the notes page
-if (window.location.pathname === "/notes") {
-  // Select DOM elements
-  noteForm = document.querySelector(".note-form");
-  noteTitle = document.querySelector(".note-title");
-  noteText = document.querySelector(".note-textarea");
-  saveNoteBtn = document.querySelector(".save-note");
-  newNoteBtn = document.querySelector(".new-note");
-  clearBtn = document.querySelector(".clear-btn");
-  noteList = document.querySelectorAll(".list-container .list-group");
-}
-
 // Function to show an element
 const show = (elem) => {
   elem.style.display = "inline";
@@ -64,7 +52,6 @@ const deleteNote = (id) =>
 const renderActiveNote = () => {
   hide(saveNoteBtn);
   hide(clearBtn);
-
   if (activeNote.id) {
     show(newNoteBtn);
     noteTitle.setAttribute("readonly", true);
@@ -95,14 +82,11 @@ const handleNoteSave = () => {
 // Function to handle deleting a note
 const handleNoteDelete = (e) => {
   e.stopPropagation();
-
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute("data-note")).id;
-
   if (activeNote.id === noteId) {
     activeNote = {};
   }
-
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -141,21 +125,16 @@ const renderNoteList = async (notes) => {
   if (window.location.pathname === "/notes") {
     noteList.forEach((el) => (el.innerHTML = ""));
   }
-
   let noteListItems = [];
-
   // Function to create list item with or without delete button
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement("li");
     liEl.classList.add("list-group-item");
-
     const spanEl = document.createElement("span");
     spanEl.classList.add("list-item-title");
     spanEl.innerText = text;
     spanEl.addEventListener("click", handleNoteView);
-
     liEl.append(spanEl);
-
     if (delBtn) {
       const delBtnEl = document.createElement("i");
       delBtnEl.classList.add(
@@ -166,24 +145,18 @@ const renderNoteList = async (notes) => {
         "delete-note"
       );
       delBtnEl.addEventListener("click", handleNoteDelete);
-
       liEl.append(delBtnEl);
     }
-
     return liEl;
   };
-
   if (jsonNotes.length === 0) {
     noteListItems.push(createLi("No saved Notes", false));
   }
-
   jsonNotes.forEach((note) => {
     const li = createLi(note.title);
     li.dataset.note = JSON.stringify(note);
-
     noteListItems.push(li);
   });
-
   if (window.location.pathname === "/notes") {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
