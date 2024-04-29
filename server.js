@@ -1,9 +1,9 @@
 // Modules
 const path = require("path");
 const express = require("express");
-const addNotes = require("./db/addNotes.js");
-const readNotes = require("./db/readNotes.js");
-const deleteNotes = require("./db/deleteNotes.js");
+const addNotes = require("./database/database.js");
+const readNotes = require("./database/database.js");
+const deleteNotes = require("./database/database.js");
 
 // Server
 const PORT = process.env.PORT || 3001;
