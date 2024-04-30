@@ -20,7 +20,7 @@ module.exports = (app) => {
       let newNote = req.body;
       notes.push(newNote);
       updateDb();
-      return console.log("Added new note: " + newNote.title);
+      res.json("Added new note: " + newNote.title);
     });
 
     // Retrieves a note with specific id
@@ -33,18 +33,18 @@ module.exports = (app) => {
     app.delete("/api/notes/:id", function (req, res) {
       notes.splice(req.params.id, 1);
       updateDb();
-      console.log("Deleted note with id " + req.params.id);
+      res.json("Deleted note with id " + req.params.id);
     });
 
 
     // Display notes.html when /notes is accessed
     app.get("/notes", function (req, res) {
-      res.sendFile(path.join(__dirname, "/public/notes.html"));
+      res.sendFile(path.join(__dirname, "../public/notes.html"));
     });
 
     // Display index.html when all other routes are accessed
     app.get("*", function (req, res) {
-      res.sendFile(path.join(__dirname, "/public/index.html"));
+      res.sendFile(path.join(__dirname, "../public/index.html"));
     });
 
     // Updates the json file whenever a note is added or deleted
