@@ -15,7 +15,7 @@ Delete notes that are no longer needed.
 Clone the repository to your local machine:
 ### bash
 Copy code
-git clone https://github.com/your-username/note-taker.git
+git clone https://github.com/CLBlue60/Express-Note-Taker
 Navigate to the project directory:
 ### bash
 Copy code
