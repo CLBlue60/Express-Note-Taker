@@ -13,19 +13,12 @@ Delete notes that are no longer needed.
 
 ## Installation and Usage
 Clone the repository to your local machine:
-### bash
-Copy code
 git clone https://github.com/CLBlue60/Express-Note-Taker
 Navigate to the project directory:
-### bash
-Copy code
 cd note-taker
-Install dependencies:
-### Copy code
+Install dependencies
 npm install
 Start the server:
-### sql
-Copy code
 npm start
 Open your web browser and go to http://localhost:3001 to use the Note Taker application.
 
